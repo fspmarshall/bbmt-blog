@@ -203,8 +203,45 @@ to an array.  We then check whether or not the hash we produced is equal to the
 operator automatically.  If the last line of a function does not end with a semi-colon,
 Rust infers that the value of that expression is the value to return.
 
-TODO
+The solution is to have Alice provide a randomly generated challenge phrase.
+Bob can hash the password *and* the challenge phrase together.  This will
+allow Alice to easily check if Bob knows the password, but won't provide
+Eve with any information that she could use to enter the clubhouse by the
+same process.  If we model the entire process in code, it looks like this:
+
+```rust
+// bob knows the password.
+let password = "decentralize all the things";
+// alice gives bob a challenge phrase.
+let challenge = " where appropriate";
+// bob hashes the password and challenge together and
+// gives alice the result as his response.
+let response = hash_many(&[password,challenge]);
+// eve observes the response, but cannot use it
+// to reconstruct the password.
+// if the response is valid, alice lets bob into
+// the clubhouse.  otherwise she turns him away.
+if verify(password,challenge,&response) {
+    println!("welcome!");
+} else {
+    println!("access denied!");
+}
+```
+
+The above process is not wholly dissimilar from how user passwords are
+stored in many systems.  Storing a password is very dangerous, as any
+party which gained access to the system could read all the passwords.
+Instead of storing the password itself, a random value known as a 'salt'
+is stored along with a hash of the salt and password combined.  This allows
+a password to be verified without needing to save the password itself to disk.
+The randomness of the salt prevents attackers from using a pre-computed
+database of the hashes of common passwords to attempt to determine the password
+that is in use.
+
 
 ## Up next
 
-TODO
+In the next episode we will be discussing identity-based cryptography.
+We will experiment with Elliptic Curve Cryptography to generate secure
+digital signatures, and look at how digital signature algorithms allow
+us to make secure public identities/accounts.
