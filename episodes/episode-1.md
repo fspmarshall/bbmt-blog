@@ -238,10 +238,22 @@ The randomness of the salt prevents attackers from using a pre-computed
 database of the hashes of common passwords to attempt to determine the password
 that is in use.
 
+## Conclusion
+
+Cryptographic tools give us the ability to secure information and
+information-based systems against malicious actors.  Different
+cryptographic tools are useful for different kinds of securement.
+Cryptographic hashing functions offer us the ability to uniquely
+identify information in a manner which is incredibly difficult to
+forge or reverse.  With a little creativity, hashing can be used to
+secure systems from many different threats, including tampering,
+forgery, and surveillance.  In a future episode we will learn
+about how hashing may even be used to measure investment of
+computational resources.
 
 ## Up next
 
 In the next episode we will be discussing identity-based cryptography.
 We will experiment with Elliptic Curve Cryptography to generate secure
 digital signatures, and look at how digital signature algorithms allow
-us to make secure public identities/accounts.
+us to make secure public identities and accounts.
