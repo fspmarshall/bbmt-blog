@@ -121,10 +121,7 @@ and covers all of the core features of the language in a friendly and accessible
 
 ## Up next
 
-In the next episode, *meet the crpyto*, we will be introducing the core cryptography that 
-our  blockchain will require.  We will write a few simple experiments to get a feel for 
-how these tools work, and build the cryptographic utilities that our blockchain will be
-build upon.
-
-
+In the next episode, [hashing things out](./episode-1.md), we will be discussing cryptography
+in general, the key cryptographic goals of blockchain technologies, and experimenting
+with the properties and applications of cryptographic hashing functions.
 

@@ -20,7 +20,7 @@ gave a brief introduction to the properties that make blockchains interesting an
 useful, as well as my thoughts on why a bottom-up view of blockchain technology
 is important.
 
-In this episode, we will be meeting the family of cryptographic tools that we will
+In this episode, we will begin meeting the family of cryptographic tools that we will
 use throughought this series.  Don't worry if you aren't familiar with cryptography
 at all; we'll start from the beginning.
 
@@ -42,11 +42,12 @@ to do it, but the core value-proposition of a blockchain is its ability to ensur
 the integrity of a system's information.  There is nothing which prevents blockchains
 from housing secrets, but it isn't their strength, and, in some cases, storing secrets
 on a blockchain can actually be a *very* bad idea (we will discuss this further at
-a later time).  Since integrity is the core goal, this episode will be focused on
+a later time).  Since integrity is the core goal, we will focus on
 the cryptographic tools that allow us to ensure integrity.  Two key challenges arise
 when we want to secure a system against invalid state or inputs: ensuring the 
 accuracy of information within the system, and validating the identity of actors within 
-the system.  Solutions to both problems will be discussed below.
+the system.  We will focus on the first problem for this episode, and tackle the second
+problem in the next episode.
 
 
 ## Setup
@@ -107,13 +108,15 @@ importing a library's most commonly used elements is a very common pattern in
 Rust.
 
 
-## Hashing Functions
+## Cryptographic Hashing Functions 
 
 The general definition of a hashing function is a function which produces a
 fixed-size output for an arbitrary sized input.  A simple example of this
 property would be a function which divides any whole number by 2 and returns
 the remainder of the devision.  The output of this function would always
-be either 0 or 1, regardless of the size of the input number.
+be either 0 or 1, regardless of the size of the input number.  The output
+of this function is also *deterministic*, meaning that it will always produce
+the same output for a given input.
 
 Cryptographic hashing functions are a special subset of hashing functions
 which are suitable for use in cryptography.  The goal of a cryptographic
@@ -169,14 +172,17 @@ magic of a cryptographic hashing algorithm; the apparent difference
 or similarity of two inputs has no correlation with the difference
 or similarity of thier respective outputs.
 
+
+## Hashing in the wild
+
 The above example demonstrated an important propery, but it wasn't particulary
 interesting or useful.  Lets take a look at how we might use hashing to build
 a rudimentary cryptographic trust protocol.  Suppose Alice has a secret clubhouse.
-Anyone who knows the password may enter the clubhouse.  Bob knows the password
-and wants to enter the clubhouse.  Unfortunately, Eve is outside the clubhouse
+Anyone who knows the password may enter the clubhouse.  Bob believes he knows the
+password, and wants to enter the clubhouse.  Unfortunately, Eve is outside the clubhouse
 listening, so Bob cannot simply speak the password.  Alice could just ask Bob
 for the hash of the password, but if she did that then Eve could use the
-hash to get in too.  How does Alice check if Bob knows the password without
+hash to get via the same system.  How can Alice check if Bob knows the password without
 making the clubhouse vulnerable to Eve?
 
 
@@ -193,27 +199,7 @@ fn verify(password: &str, challenge: &str, response: &Hash) -> bool {
 So what exactly does the above function do?  
 
 
-So what exactly does the above mean?  It is a function which takes two arguments
-of type `&str`, and an argument of type `&Hash`, returning a boolian
-(true/false) value.  To understand this function, we need to understand
-a few key points about how Rust's functions and types work.  The `fn` keyword
-indicates a function decliration.  Everything between the `fn` and the
-opening curly brace (`{`) is the function's *signature*.  Unlike many languages
-which play fast and loose with the rules, Rust's function signatures are an 
-absolute promise.  All immutable references, indicated by the `&`, are read 
-but never modified.   
+## Up next
 
-
-## Asymmetric Cryptography
-
-
- 1. meet the crypto
-  - recap
-  - introduce hashing functions: data fingerprinting, one-way functions, etc...
-  - introduce asymmetric crypto: signing, identitiy, public keys...
-  - TODO
-  - whats next: build a toy blockchian
-
-
-
+TODO
 
