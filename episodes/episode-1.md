@@ -6,7 +6,7 @@ The purpose of this series is to give a bottom-up view of how blockchians
 work, by experimenting with and building core blockchain technologies.
 This series is for educational purposes only and should not be construed
 as adivce or reccommendations concerning best-practices for security,
-cryptography, etc... This series is devloped openly on github, 
+cryptography, etc... This series is devloped openly on github,
 at `forrest-marshall/bbmt-blog`.*
 
 ---
@@ -21,7 +21,7 @@ useful, as well as my thoughts on why a bottom-up view of blockchain technology
 is important.
 
 In this episode, we will begin meeting the family of cryptographic tools that we will
-use throughought this series.  Don't worry if you aren't familiar with cryptography
+use throughout this series.  Don't worry if you aren't familiar with cryptography
 at all; we'll start from the beginning.
 
 > [Cryptography] is the practice and study of techniques for secure communication
@@ -44,8 +44,8 @@ from housing secrets, but it isn't their strength, and, in some cases, storing s
 on a blockchain can actually be a *very* bad idea (we will discuss this further at
 a later time).  Since integrity is the core goal, we will focus on
 the cryptographic tools that allow us to ensure integrity.  Two key challenges arise
-when we want to secure a system against invalid state or inputs: ensuring the 
-accuracy of information within the system, and validating the identity of actors within 
+when we want to secure a system against invalid state or inputs: ensuring the
+accuracy of information within the system, and validating the identity of actors within
 the system.  We will focus on the first problem for this episode, and tackle the second
 problem in the next episode.
 
@@ -53,13 +53,13 @@ problem in the next episode.
 ## Setup
 
 If you are planning to follow along with examples, make sure that you have installed
-[Rust](https://www.rust-lang.org/en-US/), as well as its associated package-manager 
+[Rust](https://www.rust-lang.org/en-US/), as well as its associated package-manager
 `cargo` (covered in [episode zero](./episode-0.md)).  If you are not following along,
 you can safely skip this section.
 
 The `cargo` package-manager includes a set of helpful commands for instantiating,
-building, and running Rust projects.  Create a new binary (executable) project 
-with `cargo new ep1-examples --bin`.  This command will create the following 
+building, and running Rust projects.  Create a new binary (executable) project
+with `cargo new ep1-examples --bin`.  This command will create the following
 file-structure:
 
 ```
@@ -83,13 +83,13 @@ If you `cd` into the main project directory and execute `cargo run`, the project
 should compile and print out `Hello, world!`.
 
 For this demonstration we will need to use one dependency, the `eth-crypto` crate
-(Rust refers to its libraries as "crates", inkeeping with Rust's industrially
-inspired naming system).  Tell cargo where to acquire the dependency by adding the 
+(Rust refers to its libraries as "crates", in keeping with Rust's industrially
+inspired naming system).  Tell cargo where to acquire the dependency by adding the
 following line to the `Cargo.toml` file under the `[dependencies]` section:
 
 ```toml
 eth-crypto = { git = "https://github.com/forrest-marshall/eth-crypto.git" }
-``` 
+```
 
 Once the dependency has been listed, we can bring it into scope within our code
 by adding these lines to the top of the `main.rs` file:
@@ -108,7 +108,7 @@ importing a library's most commonly used elements is a very common pattern in
 Rust.
 
 
-## Cryptographic Hashing Functions 
+## Cryptographic Hashing Functions
 
 The general definition of a hashing function is a function which produces a
 fixed-size output for an arbitrary sized input.  A simple example of this
@@ -122,7 +122,7 @@ Cryptographic hashing functions are a special subset of hashing functions
 which are suitable for use in cryptography.  The goal of a cryptographic
 hashing function is the be a one-way function.  This means that it should,
 in theory, be impossible to reverse a hashing function and thereby determine what
-input values produced a given output.  Furthermore, it should be infeasable
+input values produced a given output.  Furthermore, it should be infeasible
 to find two similar inputs which produce the same output (an event referred
 to as a "collision").  If built correctly, a cryptographic hashing function
 can be thought of as a fingerprinter for data.  If a piece of data produces
@@ -155,27 +155,27 @@ hash-2: c23ee272307dfe7f763e5c0e5534dc158fa262bdd0e5801ea863024db84fe507
 ```
 
 So, what did we just do here?  First, we declared a mutable array of bytes.
-For security and optimization reasons, Rust always forces us to be explicit 
+For security and optimization reasons, Rust always forces us to be explicit
 about wanting to be able to mutate (modify) any variables that we declare.
-Next, we pass an immutable reference to the array into the `hash` function, saving the 
-output.  Immutable references, indicated by the `&` symbol, allow a function to 
+Next, we pass an immutable reference to the array into the `hash` function, saving the
+output.  Immutable references, indicated by the `&` symbol, allow a function to
 temporarily read a piece of data without allowing the function
 to modify that data, another key element in Rust's security and safety guarantees.
 The third line is where things get interesting.  By changing the first byte of the
 array from `1` to `0`, we have actually only modified a single binary bit.
 A byte of value `1` is represented in binary as `00000001`.  A byte of
 value `0` is, unsurprisingly, represented as `00000000`.  After flipping
-this bit, we hash again.  When we print out the two hashes, 
+this bit, we hash again.  When we print out the two hashes,
 we see that the two values are wildly different even though their
 respective inputs only differed by a single bit.  This is the real
 magic of a cryptographic hashing algorithm; the apparent difference
 or similarity of two inputs has no correlation with the difference
-or similarity of thier respective outputs.
+or similarity of their respective outputs.
 
 
 ## Hashing in the wild
 
-The above example demonstrated an important propery, but it wasn't particulary
+The above example demonstrated an important property, but it wasn't particularly
 interesting or useful.  Lets take a look at how we might use hashing to build
 a rudimentary cryptographic trust protocol.  Suppose Alice has a secret clubhouse.
 Anyone who knows the password may enter the clubhouse.  Bob believes he knows the
@@ -184,8 +184,6 @@ listening, so Bob cannot simply speak the password.  Alice could just ask Bob
 for the hash of the password, but if she did that then Eve could use the
 hash to get via the same system.  How can Alice check if Bob knows the password without
 making the clubhouse vulnerable to Eve?
-
-
 
 Hint:
 
@@ -196,10 +194,17 @@ fn verify(password: &str, challenge: &str, response: &Hash) -> bool {
 }
 ```
 
-So what exactly does the above function do?  
+So what exactly does the above function do?  It takes two strings, `password` and
+`challenge`, and a hash named `response`.  The function returns a `bool` (true/false)
+value, indicated by the `->` operator.  Internally, we are hashing the `password`
+and `challenge` strings together by passing them to `hash_many` inside of a reference
+to an array.  We then check whether or not the hash we produced is equal to the
+`response` hash.  Note that the function is returning the result of the `==` comparison
+operator automatically.  If the last line of a function does not end with a semi-colon,
+Rust infers that the value of that expression is the value to return.
 
+TODO
 
 ## Up next
 
 TODO
-
