@@ -1,6 +1,6 @@
-# The birds, the bees, and the merkle trees ep[1]: hashing things out
+# The Birds, the Bees, and the Merkle Trees ep[1]: Hashing Things Out
 
-*This is episode 1 of 'The birds, the bees, and the merkle trees',
+*This is episode 1 of 'The Birds, the Bees, and the Merkle Trees',
 a developer-focused educational series on blockchain technology.
 The purpose of this series is to give a bottom-up view of how blockchians
 work, by experimenting with and building core blockchain technologies.
@@ -173,7 +173,7 @@ or similarity of two inputs has no correlation with the difference
 or similarity of their respective outputs.
 
 
-## Hashing in the wild
+## Hashing in the Wild
 
 The above example demonstrated an important property, but it wasn't particularly
 interesting or useful.  Lets take a look at how we might use hashing to build
@@ -251,7 +251,7 @@ forgery, and surveillance.  In a future episode we will learn
 about how hashing may even be used to measure investment of
 computational resources.
 
-## Up next
+## Up Next
 
 In the next episode we will be discussing identity-based cryptography.
 We will experiment with Elliptic Curve Cryptography to generate secure
