@@ -1,0 +1,13 @@
+# give the spellchecker a helping hand &
+# appease the reddit gods.
+permissioned
+blockchain
+merkle
+Ethereum
+blockchains
+DAPPs
+cryptographic
+bbmt
+crypto
+github
+transactional

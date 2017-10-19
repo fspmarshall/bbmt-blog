@@ -2,11 +2,11 @@
 
 *This is episode 1 of 'The Birds, the Bees, and the Merkle Trees',
 a developer-focused educational series on blockchain technology.
-The purpose of this series is to give a bottom-up view of how blockchians
+The purpose of this series is to give a bottom-up view of how blockchains
 work, by experimenting with and building core blockchain technologies.
 This series is for educational purposes only and should not be construed
-as adivce or reccommendations concerning best-practices for security,
-cryptography, etc... This series is devloped openly on github,
+as advice or recommendations concerning best-practices for security,
+cryptography, etc... This series is developed openly on github,
 at `forrest-marshall/bbmt-blog`.*
 
 ---
@@ -31,7 +31,7 @@ Cryptography has its roots in secrets; early cryptography dealt primarily with
 how to keep secrets such that only the intended parties could read them.  Cryptography
 was typically the domain of spies, military leaders, and the like.  In more recent
 times, cryptography has branched out significantly to encompass just about any
-concern related to passing information in an adversarial scenario.  Most poeple use
+concern related to passing information in an adversarial scenario.  Most people use
 a significant amount of cryptography every day, even if they are not aware of it.
 Cryptography guards the integrity of software updates, assures us that the websites
 that we visit are who they claim to be, and is integral to the functioning of
@@ -113,7 +113,7 @@ Rust.
 The general definition of a hashing function is a function which produces a
 fixed-size output for an arbitrary sized input.  A simple example of this
 property would be a function which divides any whole number by 2 and returns
-the remainder of the devision.  The output of this function would always
+the remainder of the division.  The output of this function would always
 be either 0 or 1, regardless of the size of the input number.  The output
 of this function is also *deterministic*, meaning that it will always produce
 the same output for a given input.
@@ -125,7 +125,7 @@ in theory, be impossible to reverse a hashing function and thereby determine wha
 input values produced a given output.  Furthermore, it should be infeasible
 to find two similar inputs which produce the same output (an event referred
 to as a "collision").  If built correctly, a cryptographic hashing function
-can be thought of as a fingerprinter for data.  If a piece of data produces
+can be thought of as a finger-printer for data.  If a piece of data produces
 a given output, that output serves as a unique identifier for the data.  If
 the data is tampered with in any way, it will no longer match the original
 hash, and can easily be shown to be invalid.

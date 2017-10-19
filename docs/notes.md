@@ -43,4 +43,7 @@ Use `eth-crypto` crate's simplified apis to allow readers
 to experiment with hashing/ecc/etc... without getting caught
 up in irrelevant details.
 
+TODO: folks on the reddit pointed out that it is potentially problematic to
+over-abstract usage of crypto crates; need to explicitly reference
+readers to appropriate crates in case they want to take examples further.
 

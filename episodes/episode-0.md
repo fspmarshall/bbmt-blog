@@ -1,12 +1,12 @@
-# The Birds, the Bees, and the Merkle Trees Ep[0]: Blockchains From Scrath
+# The Birds, the Bees, and the Merkle Trees Ep[0]: Blockchains From Scratch
 
 *This is episode 0 of 'The Birds, the Bees, and the Merkle Trees',
 a developer-focused educational series on blockchain technology.
-The purpose of this series is to give a bottom-up view of how blockchians
+The purpose of this series is to give a bottom-up view of how blockchains
 work, by experimenting with and building core blockchain technologies.
 This series is for educational purposes only and should not be construed
-as adivce or reccommendations concerning best-practices for security,
-cryptography, etc... This series is devloped openly on github,
+as advice or recommendations concerning best-practices for security,
+cryptography, etc... This series is developed openly on github,
 at `forrest-marshall/bbmt-blog`.*
 
 ---
@@ -46,14 +46,14 @@ googling may be necessary.
 
 ## Why Blockchains?
 
-Before we try to understand *how* blockchains work, it is worth looking at *why* blockchians
+Before we try to understand *how* blockchains work, it is worth looking at *why* blockchains
 are worth understanding at all.  A brief glance at the repository of all human knowledge
 yields this helpful definition:
 
 > ...a continuously growing list of records, called *blocks*, which are linked
 > and secured using cryptography... --Wikipedia
 
-The properties of a blockchian vary by implementation, but it is reasonable to assume that any given
+The properties of a blockchain vary by implementation, but it is reasonable to assume that any given
 blockchain system was built to meet the following criteria:
 
 - *permissioned*:  Blockchains typically integrate the concept of *permissioned roles*,

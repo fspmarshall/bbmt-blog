@@ -8,5 +8,3 @@ work, by experimenting with and building core blockchain technologies.
 This series is for educational purposes only and should not be construed
 as adivce or reccommendations concerning best-practices for security,
 cryptography, etc...
-
-
