@@ -120,7 +120,7 @@ the same output for a given input.
 
 Cryptographic hashing functions are a special subset of hashing functions
 which are suitable for use in cryptography.  The goal of a cryptographic
-hashing function is the be a one-way function.  This means that it should,
+hashing function is to be a one-way function.  This means that it should,
 in theory, be impossible to reverse a hashing function and thereby determine what
 input values produced a given output.  Furthermore, it should be infeasible
 to find two similar inputs which produce the same output (an event referred
